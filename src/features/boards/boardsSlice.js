@@ -6,7 +6,6 @@ const initialState = {
     { id: 2, name: "Project B" },
     { id: 3, name: "Project C" },
   ],
-  selectedBoard: { id: 1, name: "Project A" },
 };
 
 const boardsSlice = createSlice({
@@ -20,11 +19,8 @@ const boardsSlice = createSlice({
       };
       state.boards.push(newBoard);
     },
-    selectBoard: (state, action) => {
-      state.selectedBoard = action.payload;
-    },
   },
 });
 
-export const { addBoard, selectBoard } = boardsSlice.actions;
+export const { addBoard } = boardsSlice.actions;
 export default boardsSlice.reducer;
