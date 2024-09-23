@@ -1,3 +1,11 @@
-export default function App() {
-  return <h1 className="text-3xl font-bold text-indigo-600">Hello world!</h1>;
-}
+const App = () => {
+  return (
+    <div className="min-h-screen bg-gray-100 flex">
+      {/* Navbar */}
+      {/* Sidebar  */}
+      {/* Main */}
+    </div>
+  );
+};
+
+export default App;
