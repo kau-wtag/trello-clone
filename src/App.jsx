@@ -1,26 +1,16 @@
-import React, { useState } from "react";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import Board from "./components/Board";
+import { useSelector } from "react-redux";
 
 const App = () => {
-  const boards = [
-    { id: 1, name: "Project A" },
-    { id: 2, name: "Project B" },
-    { id: 3, name: "Project C" },
-  ];
-
-  const [selectedBoard, setSelectedBoard] = useState(boards[0]);
+  const selectedBoard = useSelector((state) => state.boards.selectedBoard);
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
       <Navbar />
       <div className="flex flex-grow ">
-        <Sidebar
-          boards={boards}
-          selectedBoard={selectedBoard}
-          onSelectBoard={setSelectedBoard}
-        />
+        <Sidebar />
         <main className="flex-grow p-4">
           <Board selectedBoard={selectedBoard} />{" "}
         </main>
