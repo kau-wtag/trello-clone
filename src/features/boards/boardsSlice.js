@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { v4 as uuidv4 } from "uuid"; // Import UUID library
+import { v4 as uuidv4 } from "uuid";
 
-// Default sections template
 const defaultSections = [
   { id: uuidv4(), name: "To Do", cards: [] },
   { id: uuidv4(), name: "In Progress", cards: [] },
