@@ -1,12 +1,13 @@
-import React from "react";
 import Card from "./Card";
 
-const Section = ({ title }) => {
+const Section = ({ section }) => {
   return (
     <div className="bg-gray-200 p-3 rounded shadow-md">
-      <h2 className="font-bold text-base mb-2">{title}</h2>
+      <h2 className="font-bold text-base mb-2">{section.name}</h2>
       <div className="">
-        <Card content="Example Task" />
+        {section.cards.map((card, index) => (
+          <Card key={card} card={card} />
+        ))}
       </div>
     </div>
   );

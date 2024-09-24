@@ -1,9 +1,7 @@
-import React from "react";
-
-const Card = ({ content }) => {
+const Card = ({ card }) => {
   return (
     <div className="bg-white p-2 rounded shadow-sm mb-2 cursor-pointer">
-      {content}
+      {card}
     </div>
   );
 };
