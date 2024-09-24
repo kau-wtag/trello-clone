@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import Card from "./Card";
 
 import { useState } from "react";
-import { addCard } from "../features/boards/boardsSlice";
+import { addCard, deleteCard } from "../features/boards/boardsSlice";
 
 const Section = ({ section, boardId }) => {
   const [cardContent, setCardContent] = useState("");
@@ -14,13 +14,20 @@ const Section = ({ section, boardId }) => {
       setCardContent("");
     }
   };
+  const handleDeleteCard = (cardId) => {
+    dispatch(deleteCard({ boardId, sectionId: section.id, cardId }));
+  };
 
   return (
     <div className="bg-gray-200 p-3 rounded shadow-md">
       <h2 className="font-bold text-base mb-2">{section.name}</h2>
       <div className="">
         {section.cards.map((card, index) => (
-          <Card key={card.id} card={card} />
+          <Card
+            key={card.id}
+            card={card}
+            onDelete={() => handleDeleteCard(card.id)}
+          />
         ))}
       </div>
 

@@ -37,9 +37,21 @@ const boardsSlice = createSlice({
         firstSection.cards.push({ id: uuidv4(), content });
       }
     },
-    deleteCard: () => {},
+    deleteCard: (state, action) => {
+      const { boardId, sectionId, cardId } = action.payload;
+
+      const board = state.boards.find((board) => boardId == board.id);
+      if (board) {
+        const section = board.sections.find(
+          (section) => sectionId === section.id
+        );
+        if (section) {
+          section.cards = section.cards.filter((card) => card.id !== cardId);
+        }
+      }
+    },
   },
 });
 
-export const { addBoard, addCard } = boardsSlice.actions;
+export const { addBoard, addCard, deleteCard } = boardsSlice.actions;
 export default boardsSlice.reducer;
