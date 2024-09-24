@@ -15,7 +15,7 @@ const Board = () => {
 
   return (
     <div className="board grid grid-cols-5 gap-4 p-4">
-      <h2 className="col-span-5 text-2xl font-bold mb-4">Board {board.name}</h2>
+      <h2 className="col-span-5 text-2xl font-bold mb-4">{board.name}</h2>
       {sections.map((section, index) => (
         <Section key={index} title={section} />
       ))}
