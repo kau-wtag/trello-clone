@@ -1,15 +1,14 @@
 import { useDispatch } from "react-redux";
-import Card from "./Card";
 
 import { useState } from "react";
-import { addCard, deleteCard } from "../features/boards/boardsSlice";
-import { Draggable } from "react-beautiful-dnd";
+import { addCard } from "../features/boards/boardsSlice";
 import { useParams } from "react-router-dom";
+import CardContainer from "./CardContainer";
 
 const Section = ({ section, index }) => {
+  const dispatch = useDispatch();
   const { id: boardId } = useParams();
   const [cardContent, setCardContent] = useState("");
-  const dispatch = useDispatch();
 
   const handleAddCard = () => {
     if (cardContent.trim()) {
@@ -18,50 +17,30 @@ const Section = ({ section, index }) => {
     }
   };
 
-  const handleDeleteCard = (cardId) => {
-    dispatch(deleteCard({ boardId, sectionId: section.id, cardId }));
-  };
-
   return (
-    <Draggable draggableId={section.id} index={index}>
-      {(provided) => (
-        <div
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
-          ref={provided.innerRef}
-          className="bg-gray-200 p-3 rounded shadow-md"
-        >
-          <h2 className="font-bold text-base mb-2">{section.name}</h2>
-          <div className="">
-            {section.cards.map((card, index) => (
-              <Card
-                key={card.id}
-                card={card}
-                onDelete={() => handleDeleteCard(card.id)}
-              />
-            ))}
-          </div>
+    <div className="bg-gray-200 p-3 rounded shadow-md hover:bg-red-100">
+      <h2 className="font-bold text-base mb-2">{section.name}</h2>
 
-          {section.name === "To Do" && (
-            <div className="mt-2">
-              <input
-                type="text"
-                value={cardContent}
-                onChange={(e) => setCardContent(e.target.value)}
-                placeholder="New card content"
-                className="p-1 border rounded w-full"
-              />
-              <button
-                onClick={handleAddCard}
-                className="mt-1 p-1 w-full bg-blue-500 text-white rounded"
-              >
-                + Add Card
-              </button>
-            </div>
-          )}
+      <CardContainer section={section} />
+
+      {section.name === "To Do" && (
+        <div className="mt-2">
+          <input
+            type="text"
+            value={cardContent}
+            onChange={(e) => setCardContent(e.target.value)}
+            placeholder="New card content"
+            className="p-1 border rounded w-full"
+          />
+          <button
+            onClick={handleAddCard}
+            className="mt-1 p-1 w-full bg-blue-500 text-white rounded"
+          >
+            + Add Card
+          </button>
         </div>
       )}
-    </Draggable>
+    </div>
   );
 };
 

@@ -21,7 +21,7 @@ import Section from "./Section";
 
 const SectionContainer = ({ sections }) => {
   return (
-    <Droppable droppableId={"Section Container"} type="task">
+    <Droppable droppableId={"Section Container"} type="SECTION">
       {(provided) => (
         <div
           {...provided.droppableProps}

@@ -14,8 +14,12 @@ const Board = () => {
     return <div className="text-red-500 text-center mt-4">Board not found</div>;
   }
 
+  const handleDragEnd = (results) => {
+    console.log(results);
+  };
+
   return (
-    <DragDropContext onDragEnd={() => console.log("Drag Drop event occurred")}>
+    <DragDropContext onDragEnd={handleDragEnd}>
       <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">
         {board.name}
       </h2>
