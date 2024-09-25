@@ -3,12 +3,17 @@ import { Draggable } from "react-beautiful-dnd";
 const Card = ({ card, onDelete, index }) => {
   return (
     <Draggable draggableId={card.id} index={index}>
-      {(provided) => (
+      {(provided, snapshot) => (
         <div
           {...provided.dragHandleProps}
           {...provided.draggableProps}
           ref={provided.innerRef}
-          className="bg-white p-2 rounded shadow-sm mb-2 cursor-pointer flex justify-between items-center"
+          className={`bg-white p-2 rounded shadow-sm mb-2 cursor-pointer flex justify-between items-center  ${
+            snapshot.isDragging ? "shadow-2xl ring-2 ring-inset" : ""
+          }`}
+          style={{
+            ...provided.draggableProps.style,
+          }}
         >
           <span>{card.content}</span>
           <button

@@ -14,11 +14,13 @@ export default function CardContainer({ section }) {
   };
   return (
     <Droppable droppableId={section.id} type="CARD">
-      {(provided) => (
+      {(provided, snapshot) => (
         <div
           {...provided.droppableProps}
           ref={provided.innerRef}
-          className={`${section.cards.length === 0 ? "min-h-10" : ""}`}
+          className={`${section.cards.length === 0 ? "min-h-10" : ""} ${
+            snapshot.isDraggingOver ? "bg-red-200 rounded-md" : ""
+          }`}
         >
           {section.cards.map((card, index) => (
             <Card
