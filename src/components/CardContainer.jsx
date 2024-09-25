@@ -15,7 +15,11 @@ export default function CardContainer({ section }) {
   return (
     <Droppable droppableId={section.id} type="CARD">
       {(provided) => (
-        <div {...provided.droppableProps} ref={provided.innerRef}>
+        <div
+          {...provided.droppableProps}
+          ref={provided.innerRef}
+          className={`${section.cards.length === 0 ? "min-h-10" : ""}`}
+        >
           {section.cards.map((card, index) => (
             <Card
               key={card.id}

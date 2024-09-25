@@ -18,23 +18,23 @@ const Section = ({ section, index }) => {
   };
 
   return (
-    <div className="bg-gray-200 p-3 rounded shadow-md hover:bg-red-100">
+    <div className="bg-gray-200 p-3 rounded shadow-md hover:ring-2 hover:ring-red-300 hover:ring-inset">
       <h2 className="font-bold text-base mb-2">{section.name}</h2>
 
       <CardContainer section={section} />
 
       {section.name === "To Do" && (
-        <div className="mt-2">
+        <div className="mt-5 rounded-md overflow-hidden">
           <input
             type="text"
             value={cardContent}
             onChange={(e) => setCardContent(e.target.value)}
-            placeholder="New card content"
-            className="p-1 border rounded w-full"
+            placeholder="New card content..."
+            className="p-1 pl-2 border w-full"
           />
           <button
             onClick={handleAddCard}
-            className="mt-1 p-1 w-full bg-blue-500 text-white rounded"
+            className=" p-1 w-full bg-blue-500 text-white"
           >
             + Add Card
           </button>
