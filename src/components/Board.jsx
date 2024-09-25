@@ -1,6 +1,8 @@
-import Section from "./Section";
+// Board.jsx
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { DragDropContext } from "react-beautiful-dnd";
+import SectionContainer from "./SectionContainer";
 
 const Board = () => {
   const { id } = useParams();
@@ -9,16 +11,16 @@ const Board = () => {
   );
 
   if (!board) {
-    return <div>Board not found</div>;
+    return <div className="text-red-500 text-center mt-4">Board not found</div>;
   }
 
   return (
-    <div className="board grid grid-cols-5 gap-4 p-4">
-      <h2 className="col-span-5 text-2xl font-bold mb-4">{board.name}</h2>
-      {board.sections.map((section, index) => (
-        <Section key={index} section={section} boardId={board.id} />
-      ))}
-    </div>
+    <DragDropContext onDragEnd={() => console.log("Drag Drop event occurred")}>
+      <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">
+        {board.name}
+      </h2>
+      <SectionContainer sections={board.sections} />
+    </DragDropContext>
   );
 };
 
