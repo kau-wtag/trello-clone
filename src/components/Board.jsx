@@ -3,8 +3,11 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { DragDropContext } from "react-beautiful-dnd";
 import SectionContainer from "./SectionContainer";
+import { useDispatch } from "react-redux";
+import { moveCard } from "../features/boards/boardsSlice";
 
 const Board = () => {
+  const dispatch = useDispatch(0);
   const { id } = useParams();
   const board = useSelector((state) =>
     state.boards.boards.find((board) => board.id === id)
@@ -15,7 +18,7 @@ const Board = () => {
   }
 
   const handleDragEnd = (results) => {
-    console.log(results);
+    dispatch(moveCard({ boardId: id, results }));
   };
 
   return (

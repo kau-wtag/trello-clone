@@ -15,7 +15,7 @@ const Card = ({ card, onDelete, index }) => {
             onClick={onDelete}
             className="text-red-500 hover:text-red-700 ml-2"
           >
-            Delete
+            DEL
           </button>
         </div>
       )}
