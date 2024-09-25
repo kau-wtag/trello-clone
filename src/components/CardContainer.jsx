@@ -18,9 +18,7 @@ export default function CardContainer({ section }) {
         <div
           {...provided.droppableProps}
           ref={provided.innerRef}
-          className={`${section.cards.length === 0 ? "min-h-10" : ""} ${
-            snapshot.isDraggingOver ? "bg-red-200 rounded-md" : ""
-          }`}
+          className={`${section.cards.length === 0 ? "min-h-10" : ""}`}
         >
           {section.cards.map((card, index) => (
             <Card
