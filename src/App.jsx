@@ -2,15 +2,10 @@ import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import Board from "./components/Board";
 import { useSelector } from "react-redux";
-import {
-  Navigate,
-  Route,
-  BrowserRouter as Router,
-  Routes,
-} from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 const App = () => {
-  const boards = useSelector((state) => state.boards.boards);
+  const boardsLength = useSelector((state) => state.boards.boards.length);
 
   return (
     <Router>
@@ -22,7 +17,9 @@ const App = () => {
             <Routes>
               <Route
                 path="/"
-                element={<Navigate to={`/board/${boards[0]?.id}`} />}
+                element={
+                  <div>{boardsLength ? "Select" : "Create"} a board</div>
+                }
               />
               <Route path="/board/:id" element={<Board />} />
             </Routes>
