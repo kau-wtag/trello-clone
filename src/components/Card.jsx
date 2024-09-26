@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
-import { FaArrowRight, FaEllipsisV } from "react-icons/fa";
+import { FaArrowRight, FaEllipsisV, FaTrash } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -48,11 +48,11 @@ const Card = ({ card, onDelete, index }) => {
               >
                 <button
                   onClick={onDelete}
-                  className="text-red-500 bg-red-100 hover:bg-red-200 p-2 text-center"
+                  className="text-red-500 bg-red-100 hover:bg-red-200 p-2 text-center flex justify-between items-center"
                 >
-                  Delete
+                  <span>Delete</span> <FaTrash />
                 </button>
-                <div className="p-1 bg-gray-200 flex items-center gap-2 justify-center">
+                <div className="p-2 bg-gray-200 flex items-center gap-2 justify-between">
                   <span>Move To </span> <FaArrowRight />
                 </div>
                 {board.sections.map((section) => (
