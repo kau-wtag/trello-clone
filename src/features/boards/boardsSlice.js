@@ -74,6 +74,8 @@ const boardsSlice = createSlice({
     moveCard: (state, action) => {
       const { boardId, results } = action.payload;
 
+      console.log(results)
+
       if (!results.destination) return;
 
       const board = state.boards.find((board) => boardId === board.id);

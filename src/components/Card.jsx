@@ -14,7 +14,6 @@ const Card = ({ card, onDelete, index }) => {
 
   const handleMoveTo = (destinationSectionId) => {
     setShowMenu(false);
-    
   };
 
   return (
