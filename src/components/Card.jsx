@@ -37,19 +37,19 @@ const Card = ({ card, onDelete, index }) => {
           <div className="relative">
             <button
               onClick={() => setShowMenu(!showMenu)}
-              className="focus:outline-none" // Ensure no default outline
+              className="focus:outline-none rounded-full flex justify-center items-center p-2 text-gray-500 hover:bg-gray-200"
             >
-              <FaEllipsisV />
+              <FaEllipsisV size={15} />
             </button>
 
             {showMenu && (
               <div
                 className="grid grid-col gap-1 bg-gray-100 p-2 rounded-md absolute z-10 w-max translate-x-5 shadow-md"
-                onMouseLeave={() => setShowMenu(false)} // Close menu when mouse leaves
+                onMouseLeave={() => setShowMenu(false)}
               >
                 <button
                   onClick={onDelete}
-                  className="text-red-500 bg-red-100 hover:bg-gray-200 p-2 text-center"
+                  className="text-red-500 bg-red-100 hover:bg-red-200 p-2 text-center"
                 >
                   Delete
                 </button>
