@@ -20,7 +20,7 @@ const Section = ({ section, index }) => {
   };
 
   return (
-    <div className="self-start">
+    <div>
       <Droppable droppableId={section.id} type="CARD">
         {(provided, snapshot) => (
           <div
@@ -34,18 +34,18 @@ const Section = ({ section, index }) => {
 
             <CardContainer section={section} />
             {index === 0 && (
-              <div className="flex rounded-sm overflow-hidden">
+              <div className="mt-5 flex rounded overflow-hidden">
                 <input
                   type="text"
                   value={cardContent}
                   onChange={(e) => setCardContent(e.target.value)}
                   placeholder="New card content..."
                   required
-                  className="p-1 pl-2  w-full flex-grow"
+                  className="p-2 px-4  w-full flex-grow"
                 />
                 <button
                   onClick={handleAddCard}
-                  className={`p-2 px-3 flex bg-blue-500 hover:bg-blue-600 text-white ${
+                  className={`p-2 px-3 flex bg-blue-500 hover:bg-blue-600 text-white flex justify-center items-center ${
                     cardContent ? "focus:red-500" : ""
                   }`}
                 >
