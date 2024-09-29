@@ -74,7 +74,7 @@ const boardsSlice = createSlice({
     moveCard: (state, action) => {
       const { boardId, results } = action.payload;
 
-      console.log(results)
+      console.log(results);
 
       if (!results.destination) return;
 
@@ -103,8 +103,42 @@ const boardsSlice = createSlice({
         destinationSection.cards.splice(destinationCardIndex, 0, movedCard);
       }
     },
+
+    moveCardFromMenu: (state, action) => {
+      const { boardId, sourceSectionId, destinationSectionId, cardId } =
+        action.payload;
+
+      // Find the current board
+      const board = state.boards.find((board) => board.id === boardId);
+      if (!board) return;
+
+      // Find the source and destination sections
+      const sourceSection = board.sections.find(
+        (section) => section.id === sourceSectionId
+      );
+      const destinationSection = board.sections.find(
+        (section) => section.id === destinationSectionId
+      );
+
+      if (!sourceSection || !destinationSection) return;
+
+      if (sourceSection === destinationSection) return;
+
+      // Find the card to move
+      const cardIndex = sourceSection.cards.findIndex(
+        (card) => card.id === cardId
+      );
+      if (cardIndex === -1) return;
+
+      // Remove the card from the source section
+      const [movedCard] = sourceSection.cards.splice(cardIndex, 1);
+
+      // Add the card to the destination section
+      destinationSection.cards.push(movedCard);
+    },
   },
 });
 
-export const { addBoard, addCard, deleteCard, moveCard } = boardsSlice.actions;
+export const { addBoard, addCard, deleteCard, moveCard, moveCardFromMenu } =
+  boardsSlice.actions;
 export default boardsSlice.reducer;

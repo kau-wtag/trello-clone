@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { FaArrowRight, FaEllipsisV, FaTrash } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { moveCardFromMenu } from "../features/boards/boardsSlice";
 
-const Card = ({ card, onDelete, index }) => {
+const Card = ({ card, onDelete, sectionId, index }) => {
+  const dispatch = useDispatch();
   const { id } = useParams();
   const [showMenu, setShowMenu] = useState(false);
 
@@ -13,6 +16,14 @@ const Card = ({ card, onDelete, index }) => {
   );
 
   const handleMoveTo = (destinationSectionId) => {
+    dispatch(
+      moveCardFromMenu({
+        boardId: id,
+        sourceSectionId: sectionId,
+        destinationSectionId,
+        cardId: card.id,
+      })
+    );
     setShowMenu(false);
   };
 
