@@ -108,11 +108,9 @@ const boardsSlice = createSlice({
       const { boardId, sourceSectionId, destinationSectionId, cardId } =
         action.payload;
 
-      // Find the current board
       const board = state.boards.find((board) => board.id === boardId);
       if (!board) return;
 
-      // Find the source and destination sections
       const sourceSection = board.sections.find(
         (section) => section.id === sourceSectionId
       );
@@ -124,16 +122,13 @@ const boardsSlice = createSlice({
 
       if (sourceSection === destinationSection) return;
 
-      // Find the card to move
       const cardIndex = sourceSection.cards.findIndex(
         (card) => card.id === cardId
       );
       if (cardIndex === -1) return;
 
-      // Remove the card from the source section
       const [movedCard] = sourceSection.cards.splice(cardIndex, 1);
 
-      // Add the card to the destination section
       destinationSection.cards.push(movedCard);
     },
   },
